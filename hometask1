@@ -1,0 +1,27 @@
+import random
+
+
+def play(secret, low=1, high=100):
+    attempts = 0
+    while True:
+        raw = input(f"Ваш варіант ({low}-{high}): ").strip()
+        try:
+            guess = int(raw)
+        except ValueError:
+            print("Введіть ціле число.")
+            continue
+
+        attempts += 1
+        if guess < secret:
+            print("Загадане число більше.")
+        elif guess > secret:
+            print("Загадане число менше.")
+        else:
+            print(f"Вгадали! Число {secret}. Кількість спроб: {attempts}")
+            return attempts
+
+
+if __name__ == "__main__":
+    secret_number = random.randint(1, 100)  # загадане число
+    print("Я загадав число від 1 до 100. Спробуйте вгадати!")
+    play(secret_number)
